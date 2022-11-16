@@ -5,10 +5,11 @@
 #include "ch3.h"
 #include "LinkedList.h"
 #include "Auto.h"
+#include "BufferOverflow.h"
 
 int ch3::main()
 {
     // Pointers and reference types
-    Auto::main();
+    BufferOverflow::main();
     return 0;
 }

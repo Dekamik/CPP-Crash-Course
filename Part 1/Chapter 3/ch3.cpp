@@ -4,10 +4,11 @@
 
 #include "ch3.h"
 #include "LinkedList.h"
+#include "Auto.h"
 
 int ch3::main()
 {
     // Pointers and reference types
-    LinkedList::main();
+    Auto::main();
     return 0;
 }

@@ -12,6 +12,7 @@ int ch1::absolute_value(int x) {
 }
 
 int ch1::main() {
+    // Basics
     int my_num = -10;
     printf("The absolute value of %d is %d.\n", my_num, absolute_value(my_num));
     return 0;

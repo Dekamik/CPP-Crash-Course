@@ -47,6 +47,7 @@ struct Calculator {
 
 int ch2::main()
 {
+    // Types
     Operation op = Operation::Add;
     Calculator c = Calculator{op};
 

@@ -23,9 +23,17 @@ struct FileLogger : Logger {
 
 
 struct ConsoleLogger : Logger {
-    void log_transfer(long from, long to, double amount) override {
-        printf("[cons] %ld -> %ld: %f\n", from, to, amount);
+
+    explicit ConsoleLogger(const char* name) : name{ name } {
+
     }
+
+    void log_transfer(long from, long to, double amount) override {
+        printf("%s [cons] %ld -> %ld: %f\n", name, from, to, amount);
+    }
+
+private:
+    const char* name;
 };
 
 
@@ -115,7 +123,7 @@ private:
 int ch5::main()
 {
     // Runtime polymorphism
-    ConsoleLogger logger;
+    ConsoleLogger logger{ "Bank" };
     InMemoryDatabase database{ 10 };
     Bank bank{ logger, database };
 

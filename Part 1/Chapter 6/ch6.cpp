@@ -7,5 +7,6 @@
 int ch6::main()
 {
     // Compile-time polymorphism
+
     return 0;
 }

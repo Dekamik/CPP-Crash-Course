@@ -44,7 +44,7 @@ int BufferOverflow::main()
 
     printf("lower: %s\nupper: %s\n", lower, upper);
 
-    lower[7] = 'g'; // Super bad. You must never do this
+    lower[7] = 'g'; // Awful. Never do this
 
     size_t index = -1;
     printf("read_from[%zu]: %c\n", index, read_from(lower, index));

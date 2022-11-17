@@ -122,7 +122,7 @@ private:
 
 int ch5::main()
 {
-    // Runtime polymorphism
+    // Run-time polymorphism
     ConsoleLogger logger{ "Bank" };
     InMemoryDatabase database{ 10 };
     Bank bank{ logger, database };

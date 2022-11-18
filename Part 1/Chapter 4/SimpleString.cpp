@@ -3,14 +3,19 @@
 //
 
 #include <cstring>
+#include <stdexcept>
 #include "SimpleString.h"
 
 SimpleString::SimpleString(size_t max_size)
     : max_size{ max_size },
-    length{ 0 },
-    buffer{ new char[max_size] }
+    length{}
 {
+    if (max_size == 0) {
+        throw std::runtime_error{ "Max size must be alt least 1." };
+    }
 
+    buffer = new char[max_size];
+    buffer[0] = 0;
 }
 
 SimpleString::~SimpleString()
@@ -21,11 +26,9 @@ SimpleString::~SimpleString()
 SimpleString::SimpleString(const SimpleString &other)
     : max_size{ other.max_size },
     length{ other.length },
-    buffer{ new char[max_size] }
+    buffer{ new char[other.max_size] }
 {
-    max_size = other.max_size;
-    length = other.length;
-    std::strncpy(buffer, other.buffer, length);
+    std::strncpy(buffer, other.buffer, max_size);
 }
 
 SimpleString::SimpleString(SimpleString &&other) noexcept
@@ -43,13 +46,13 @@ SimpleString &SimpleString::operator=(const SimpleString &other)
     if (this == &other)
         return *this;
 
-    const auto new_buffer = new char[sizeof(other.buffer)];
+    const auto new_buffer = new char[other.max_size];
     delete[] buffer;
     buffer = new_buffer;
 
     max_size = other.max_size;
     length = other.length;
-    std::strncpy(buffer, other.buffer, length);
+    std::strncpy(buffer, other.buffer, max_size);
 
     return *this;
 }
@@ -76,5 +79,14 @@ void SimpleString::print(const char *tag) const
 
 bool SimpleString::append_line(const char *x)
 {
-    
+    size_t x_len = strlen(x);
+    if (x_len + length + 2 > max_size)
+        return false;
+
+    std::strncpy(buffer + length, x, max_size - length);
+    length += x_len;
+
+    buffer[length++] = '\n';
+    buffer[length] = 0;
+    return true;
 }

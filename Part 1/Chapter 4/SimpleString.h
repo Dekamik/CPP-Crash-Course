@@ -13,7 +13,7 @@ public:
     explicit SimpleString(size_t max_size);
     ~SimpleString();
     SimpleString(const SimpleString& other);
-    SimpleString(const SimpleString&& other) noexcept;
+    SimpleString(SimpleString&& other) noexcept;
 
     SimpleString& operator=(const SimpleString& other);
     SimpleString& operator=(SimpleString&& other) noexcept;

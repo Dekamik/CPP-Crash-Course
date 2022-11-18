@@ -24,7 +24,7 @@ TimerClass::TimerClass(const TimerClass& other)
     : name{ new char[sizeof(other.name)] },
     timestamp{ other.timestamp }
 {
-    std::strncpy(this->name, name, sizeof(&name));
+    std::strncpy(name, other.name, sizeof(&other.name));
 }
 
 TimerClass::TimerClass(TimerClass&& other) noexcept

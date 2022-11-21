@@ -10,7 +10,8 @@
 
 class ch6
 {
-    static int mode(const int* values, size_t length);
+    template <typename T>
+    static int mode(const T* values, size_t length);
 
 public:
     static int main();

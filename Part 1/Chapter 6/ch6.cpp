@@ -12,7 +12,7 @@ using namespace std;
 int ch6::main()
 {
     // Compile-time polymorphism
-    int* values = new int[] {
+    long* values = new long[] {
         1,
         1,
         2,
@@ -27,17 +27,19 @@ int ch6::main()
     return 0;
 }
 
-bool sort_by_sec_desc(const pair<int, int> &a, const pair<int, int> &b)
+template <typename T>
+bool sort_by_sec_desc(const pair<T, int> &a, const pair<T, int> &b)
 {
     return (a.second > b.second);
 }
 
-int ch6::mode(const int* values, size_t length)
+template <typename T>
+int ch6::mode(const T* values, size_t length)
 {
     if (length == 0)
         return 0;
 
-    map<int, int> value_modes;
+    map<T, int> value_modes;
 
     for (size_t i = 0; i < length; i++)
     {
@@ -46,11 +48,11 @@ int ch6::mode(const int* values, size_t length)
             value_modes[values[i]]++;
             continue;
         }
-        value_modes.insert(pair<int, int>(values[i], 1));
+        value_modes.insert(pair<T, int>(values[i], 1));
     }
 
-    vector<pair<int, int> > v{ value_modes.begin(), value_modes.end() };
-    sort(v.begin(), v.end(), sort_by_sec_desc);
+    vector<pair<T, int> > v{ value_modes.begin(), value_modes.end() };
+    sort(v.begin(), v.end(), sort_by_sec_desc<T>);
 
     if (v[0].second == v[1].second)
         return 0;

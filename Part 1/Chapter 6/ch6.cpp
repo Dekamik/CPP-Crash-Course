@@ -12,7 +12,7 @@ using namespace std;
 int ch6::main()
 {
     // Compile-time polymorphism
-    long* values = new long[] {
+    auto* values = new int[] {
         1,
         1,
         2,
@@ -27,13 +27,13 @@ int ch6::main()
     return 0;
 }
 
-template <typename T>
+template <Integer T>
 bool sort_by_sec_desc(const pair<T, int> &a, const pair<T, int> &b)
 {
     return (a.second > b.second);
 }
 
-template <typename T>
+template <Integer T>
 int ch6::mode(const T* values, size_t length)
 {
     if (length == 0)

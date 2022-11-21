@@ -14,9 +14,6 @@ concept Integer = std::is_integral<T>::value;
 
 class ch6
 {
-    template <Integer T>
-    static int mode(const T* values, size_t length);
-
 public:
     static int main();
 };

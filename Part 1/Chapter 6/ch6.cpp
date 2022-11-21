@@ -9,24 +9,6 @@
 
 using namespace std;
 
-int ch6::main()
-{
-    // Compile-time polymorphism
-    auto* values = new int[] {
-        1,
-        1,
-        2,
-        2,
-        2,
-        3,
-        3,
-        4
-    };
-    auto mode = ch6::mode(values, 8);
-    printf("Mode is %d", mode);
-    return 0;
-}
-
 template <Integer T>
 bool sort_by_sec_desc(const pair<T, int> &a, const pair<T, int> &b)
 {
@@ -34,7 +16,7 @@ bool sort_by_sec_desc(const pair<T, int> &a, const pair<T, int> &b)
 }
 
 template <Integer T>
-int ch6::mode(const T* values, size_t length)
+int mode(const T* values, size_t length)
 {
     if (length == 0)
         return 0;
@@ -52,10 +34,46 @@ int ch6::mode(const T* values, size_t length)
     }
 
     vector<pair<T, int> > v{ value_modes.begin(), value_modes.end() };
-    sort(v.begin(), v.end(), sort_by_sec_desc<T>);
 
-    if (v[0].second == v[1].second)
-        return 0;
+    if (v.size() > 1)
+    {
+        sort(v.begin(), v.end(), sort_by_sec_desc<T>);
+        if (v[0].second == v[1].second)
+            return 0;
+    }
 
     return v[0].first;
+}
+
+template<typename T>
+T mean(const T* values, size_t length)
+{
+    int m = 0;
+
+    for (size_t i = 0; i < length; ++i)
+    {
+        m += values[i];
+    }
+
+    return m / length;
+}
+
+int ch6::main()
+{
+    // Compile-time polymorphism
+    auto* values = new int[] {
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        1000
+    };
+    
+    auto m = mean(values, 8);
+    printf("Mean is %d", m);
+
+    return 0;
 }

@@ -45,23 +45,23 @@ int mode(const T* values, size_t length)
     return v[0].first;
 }
 
-template<typename T>
-T mean(const T* values, size_t length)
+template<typename T, size_t Length>
+T mean(T (&arr)[Length])
 {
     int m = 0;
 
-    for (size_t i = 0; i < length; ++i)
+    for (size_t i = 0; i < Length; ++i)
     {
-        m += values[i];
+        m += arr[i];
     }
 
-    return m / length;
+    return m / Length;
 }
 
 int ch6::main()
 {
     // Compile-time polymorphism
-    auto* values = new int[] {
+    int values[] {
         1,
         1,
         2,
@@ -71,8 +71,8 @@ int ch6::main()
         3,
         1000
     };
-    
-    auto m = mean(values, 8);
+
+    auto m = mean(values);
     printf("Mean is %d", m);
 
     return 0;
